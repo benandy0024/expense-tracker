@@ -1,0 +1,129 @@
+{% extends 'base.html'%}
+{%block content%}
+
+<div class="main-content">
+			<div class="title">
+				Analytics
+			</div>
+			<!-- <div class='ad'>
+				<div class="close">
+					<i class="ion-ios-close-empty"></i>
+				</div>
+			
+			</div> -->
+			<div class="main">
+				<div class="widget">
+					<div class="title">Income</div>
+					<div class="chart">
+						<span><i class="fas fa-wallet"></i></span>
+						 {%for income in income_qs%}
+   								 <span> {{income.income_amount}}$</span><br>
+    						{%endfor%}
+
+					</div>
+				</div>
+				<div class="widget_1">
+					<div class="title">Total Amount Spent</div>
+					<div class="chart">
+						<!-- <span><i class="fas fa-money-bill-wave"></i></span> -->
+						<span>{{this_week.recent_data.amount__sum}}$</span>
+
+					</div>
+				</div>
+				<div class="widget_2">
+					<div class="title">Total Item</div>
+					<div class="chart">
+						<span>{{this_week.recent_data.item__count}}</span>
+					</div>
+
+				</div>
+
+			</div>
+			<div class="main">
+                <div class="widget_3">
+					<div class="title"> graph</div>
+					<div class="chart">
+	    <canvas id="todayExpense" width="100" height="25"></canvas>
+					</div>
+
+				</div>
+				 <div class="widget_4">
+					<div class="title"> Item</div>
+					<div class="chart">
+					  <div class="table-responsive-sm">          
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Item</th>
+        <th>Amount</th>
+        <th>Time</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+    	{%for expense in today_qs.recent %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{expense.item}}</td>
+        <td> {{expense.amount}}</td>
+        <td>{{expense.timestamp.time}}</td>
+     {%endfor%}
+      </tr>
+    </tbody>
+  </table>
+  </div>
+					</div>
+
+				</div>
+
+
+
+
+			</div>
+
+
+
+			<div class="main">
+                <div class="widget_5">
+					<div class="title"> Item</div>
+					<div class="chart">
+						  <div class="table-responsive-sm">          
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Item</th>
+        <th>Amount</th>
+        <th>Time</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+    	{%for expense in this_week.recent %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{expense.item}}</td>
+        <td> {{expense.amount}}</td>
+        <td>{{expense.timestamp.date}}</td>
+     {%endfor%}
+      </tr>
+    </tbody>
+  </table>
+  </div>
+					</div>
+
+				</div>
+				 <div class="widget_6">
+					<div class="title"> Item</div>
+					<div class="chart">
+				    <canvas id="thisWeekExpense" width="100" height="25"></canvas>
+					</div>
+
+				</div>
+
+
+
+
+			</div>
+{%endblock%}

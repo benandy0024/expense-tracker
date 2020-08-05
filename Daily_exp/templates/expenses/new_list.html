@@ -1,0 +1,56 @@
+{% extends 'base.html'%}
+{%block content%}
+<div class="container">
+<h3>My Daily expenses</h3>
+<p class="lead">Total Amount :{{this_week.recent_data.amount__sum}}</p>
+<p class="lead">Total Item:{{this_week.recent_data.item__count}}</p>
+    {%for income in income_qs%}
+    <p class="lead"> {{income}}</p>
+    {%endfor%}
+    {%for expense in this_week.recent %}
+
+<div class="card my-4" >
+
+
+    <div class="card-header">
+
+    <div class="row">
+
+        <div class="col-3 col-sm-3">Item</div>
+        <div class="col-3 col-sm-3">Amount</div>
+        <div class="col-3 col-sm-3">Date&Time</div>
+        <div class="col-2 col-sm-2">Action</div>
+
+
+    </div>
+    </div>
+  <div class="card-body">
+    <div class="row">
+
+        <div class="col-3 col-sm-3">{{expense.item}}</div>
+        <div class="col-3 col-sm-3"> {{expense.amount}}</div>
+        <div class="col-3 col-sm-3">{{expense.timestamp}}</div>
+         <div class="col-2 col-sm-2">
+            <a  class="btn btn-primary" href="{%url 'daily_expense:update' expense.id%}">
+                   Update
+            </a>
+        </div>
+    </div>
+  </div>
+    <div>
+
+
+    </div>
+
+</div>
+    <div>
+
+    </div>
+{%endfor%}
+</div>
+
+
+
+
+</div>
+{%endblock%}
